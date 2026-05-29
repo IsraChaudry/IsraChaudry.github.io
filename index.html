@@ -399,7 +399,7 @@
       transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
     }
 
-    .project-card:hover .card-inner { transform: rotateY(180deg); }
+    .card-inner.flipped { transform: rotateY(180deg); }
 
     .card-front, .card-back {
       position: absolute; inset: 0;
@@ -710,7 +710,6 @@
             <div class="exp-role">Networking Intern</div>
             <div class="exp-org">Ayub Medical Hospital</div>
             <div class="exp-date">Summer 2025</div>
-            <div class="exp-desc">Configured and maintained hospital network infrastructure across multiple wings. Assisted with switch setup, VLAN management, and day-to-day network troubleshooting for clinical systems.</div>
           </div>
           <div class="exp-card">
             <div class="exp-role">BS Cybersecurity &middot; 3rd Year</div>
@@ -738,20 +737,15 @@
               <span class="proj-num">01 &mdash; NLP</span>
               <div class="project-title">AI Phishing Email Detector</div>
               <div class="project-tags">
-                <span class="tag">DistilBERT</span>
-                <span class="tag">HuggingFace</span>
-                <span class="tag">NLP</span>
-                <span class="tag">Streamlit</span>
-                <span class="tag">Python</span>
+                <span class="tag">DistilBERT</span><span class="tag">HuggingFace</span><span class="tag">NLP</span><span class="tag">Streamlit</span><span class="tag">Python</span>
               </div>
-              <p class="flip-hint">Hover to learn more</p>
+              <a href="https://github.com/IsraChaudry/phishing_detection_system" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">View on GitHub &rarr;</a>
+              <p class="flip-hint">Click card for details</p>
             </div>
             <div class="card-back">
-              <div>
-                <div class="project-title">AI Phishing Email Detector</div>
-                <p class="project-desc">Fine-tuned DistilBERT achieving 94% precision, 91% recall on 5,000 emails. Deployed as a live Streamlit web app with dual inference modes — single email and batch CSV analysis.</p>
-              </div>
-              <a href="https://github.com/IsraChaudry/phishing_detection_system" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+              <div class="project-title">AI Phishing Email Detector</div>
+              <p class="project-desc">Fine-tuned DistilBERT achieving 94% precision, 91% recall on 5,000 emails. Deployed as a live Streamlit web app with dual inference modes — single email and batch CSV analysis.</p>
+              <p class="flip-hint">Click to flip back</p>
             </div>
           </div>
         </div>
@@ -762,21 +756,15 @@
               <span class="proj-num">02 &mdash; Web3 / Security</span>
               <div class="project-title">SecureVerse</div>
               <div class="project-tags">
-                <span class="tag">FastAPI</span>
-                <span class="tag">React</span>
-                <span class="tag">Solidity</span>
-                <span class="tag">Ethereum</span>
-                <span class="tag">NaCl</span>
-                <span class="tag">RBAC</span>
+                <span class="tag">FastAPI</span><span class="tag">React</span><span class="tag">Solidity</span><span class="tag">Ethereum</span><span class="tag">NaCl</span><span class="tag">RBAC</span>
               </div>
-              <p class="flip-hint">Hover to learn more</p>
+              <a href="https://github.com/IsraChaudry/SecureVerse" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">View on GitHub &rarr;</a>
+              <p class="flip-hint">Click card for details</p>
             </div>
             <div class="card-back">
-              <div>
-                <div class="project-title">SecureVerse</div>
-                <p class="project-desc">Decentralised identity platform with 3-factor auth: blockchain DIDs on Ethereum Sepolia, TOTP 2FA, RS256 JWT. E2E NaCl Box encryption, tamper-evident HMAC-SHA256 audit log on-chain. Threat modelling with IRIS &amp; STRIDE.</p>
-              </div>
-              <a href="https://github.com/IsraChaudry/SecureVerse" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+              <div class="project-title">SecureVerse</div>
+              <p class="project-desc">Decentralised identity platform with 3-factor auth: blockchain DIDs on Ethereum Sepolia, TOTP 2FA, RS256 JWT. E2E NaCl Box encryption, tamper-evident HMAC-SHA256 audit log on-chain. Threat modelling with IRIS &amp; STRIDE.</p>
+              <p class="flip-hint">Click to flip back</p>
             </div>
           </div>
         </div>
@@ -787,20 +775,15 @@
               <span class="proj-num">03 &mdash; Full Stack</span>
               <div class="project-title">GIKI Timetable System</div>
               <div class="project-tags">
-                <span class="tag">React</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">SQLite</span>
-                <span class="tag">Graph Coloring</span>
-                <span class="tag">CSP</span>
+                <span class="tag">React</span><span class="tag">FastAPI</span><span class="tag">SQLite</span><span class="tag">Graph Coloring</span><span class="tag">CSP</span>
               </div>
-              <p class="flip-hint">Hover to learn more</p>
+              <a href="https://github.com/IsraChaudry/GIKI-Timetable" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">View on GitHub &rarr;</a>
+              <p class="flip-hint">Click card for details</p>
             </div>
             <div class="card-back">
-              <div>
-                <div class="project-title">GIKI Timetable System</div>
-                <p class="project-desc">Automated timetable generator for 12 departments, 48 batches, 52 rooms. Custom 3-phase algorithm: Graph Coloring + CSP Backtracking + Soft Optimizer. 18 REST API endpoints with a full React frontend.</p>
-              </div>
-              <a href="https://github.com/IsraChaudry/GIKI-Timetable" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+              <div class="project-title">GIKI Timetable System</div>
+              <p class="project-desc">Automated timetable generator for 12 departments, 48 batches, 52 rooms. Custom 3-phase algorithm: Graph Coloring + CSP Backtracking + Soft Optimizer. 18 REST API endpoints with a full React frontend.</p>
+              <p class="flip-hint">Click to flip back</p>
             </div>
           </div>
         </div>
@@ -811,20 +794,15 @@
               <span class="proj-num">04 &mdash; AI Agents</span>
               <div class="project-title">LangGraph Research Assistant</div>
               <div class="project-tags">
-                <span class="tag">LangGraph</span>
-                <span class="tag">Groq</span>
-                <span class="tag">Tavily</span>
-                <span class="tag">FastAPI</span>
-                <span class="tag">React</span>
+                <span class="tag">LangGraph</span><span class="tag">Groq</span><span class="tag">Tavily</span><span class="tag">FastAPI</span><span class="tag">React</span>
               </div>
-              <p class="flip-hint">Hover to learn more</p>
+              <a href="https://github.com/IsraChaudry/bussiness-reseach-assitant" target="_blank" rel="noopener" class="project-link" onclick="event.stopPropagation()">View on GitHub &rarr;</a>
+              <p class="flip-hint">Click card for details</p>
             </div>
             <div class="card-back">
-              <div>
-                <div class="project-title">LangGraph Research Assistant</div>
-                <p class="project-desc">Multi-agent AI system with 4 specialized agents (Clarity, Research, Validator, Synthesis), human-in-the-loop interrupts, Tavily search, multi-turn memory, and a React chat interface.</p>
-              </div>
-              <a href="https://github.com/IsraChaudry/bussiness-reseach-assitant" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+              <div class="project-title">LangGraph Research Assistant</div>
+              <p class="project-desc">Multi-agent AI system with 4 specialized agents (Clarity, Research, Validator, Synthesis), human-in-the-loop interrupts, Tavily search, multi-turn memory, and a React chat interface.</p>
+              <p class="flip-hint">Click to flip back</p>
             </div>
           </div>
         </div>
@@ -835,18 +813,14 @@
               <span class="proj-num">05 &mdash; Cryptography</span>
               <div class="project-title">Lava Lamp Key Generator</div>
               <div class="project-tags">
-                <span class="tag">C++</span>
-                <span class="tag">OpenCV</span>
-                <span class="tag">SHA-256</span>
-                <span class="tag">Cryptography</span>
+                <span class="tag">C++</span><span class="tag">OpenCV</span><span class="tag">SHA-256</span><span class="tag">Cryptography</span>
               </div>
-              <p class="flip-hint">Hover to learn more</p>
+              <p class="flip-hint">Click card for details</p>
             </div>
             <div class="card-back">
-              <div>
-                <div class="project-title">Lava Lamp Key Generator</div>
-                <p class="project-desc">Hardware entropy source using live lava lamp video captured via OpenCV. Extracts RGB pixel variance per frame, feeds it through SHA-256 + XOR mixing in C++ to produce cryptographic keys with higher entropy than standard software PRNGs — inspired by Cloudflare's wall of lava lamps.</p>
-              </div>
+              <div class="project-title">Lava Lamp Key Generator</div>
+              <p class="project-desc">Hardware entropy source using live lava lamp video captured via OpenCV. Extracts RGB pixel variance per frame, feeds it through SHA-256 + XOR mixing in C++ to produce cryptographic keys with higher entropy than standard software PRNGs — inspired by Cloudflare's wall of lava lamps.</p>
+              <p class="flip-hint">Click to flip back</p>
             </div>
           </div>
         </div>
@@ -1013,6 +987,13 @@
           if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
         });
       }, { rootMargin: '-40% 0px -55% 0px' }).observe(s);
+    });
+
+    /* Card flip on click */
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.querySelector('.card-inner').classList.toggle('flipped');
+      });
     });
 
     /* Hamburger */
