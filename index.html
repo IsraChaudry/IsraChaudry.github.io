@@ -108,7 +108,8 @@
     #hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      padding-top: calc(64px + 2rem);
+      padding-top: calc(64px + 1rem);
+      padding-bottom: 2rem;
     }
 
     .hero-inner {
@@ -127,7 +128,7 @@
       font-size: 0.72rem;
       color: var(--accent);
       letter-spacing: 0.04em;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
       animation: slideLeft 0.7s cubic-bezier(0.16,1,0.3,1) both;
     }
 
@@ -153,7 +154,7 @@
       font-size: clamp(3.2rem, 5.8vw, 6.2rem);
       line-height: 0.93;
       letter-spacing: -0.04em;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1rem;
       white-space: nowrap;
     }
 
@@ -176,7 +177,7 @@
       font-size: 1rem;
       color: var(--muted);
       max-width: 460px;
-      margin-bottom: 2.2rem;
+      margin-bottom: 1.4rem;
       min-height: 1.75em;
       font-family: 'Inter', sans-serif;
       font-weight: 300;
@@ -190,7 +191,7 @@
     }
     @keyframes blink { 50% { opacity: 0; } }
 
-    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-ctas { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
 
     .btn {
       display: inline-flex; align-items: center; gap: 0.4rem;
