@@ -361,6 +361,7 @@
     }
     .exp-org { color: var(--accent); font-size: 0.78rem; margin: 2px 0; opacity: 0.85; }
     .exp-date { color: var(--muted); font-size: 0.72rem; }
+    .exp-desc { color: var(--muted); font-size: 0.76rem; margin-top: 0.5rem; line-height: 1.6; opacity: 0.8; }
 
     /* ── PROJECTS ── */
     #projects { background: var(--bg); }
@@ -382,36 +383,52 @@
       max-width: 1100px; margin: 0 auto;
     }
 
+    /* flip card */
     .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.8rem 2rem;
-      cursor: default;
-      transition: border-color 0.25s, transform 0.35s cubic-bezier(0.16,1,0.3,1);
-      transform-style: preserve-3d;
-      will-change: transform;
-      position: relative;
-      overflow: hidden;
+      perspective: 1200px;
+      cursor: pointer;
+      min-height: 280px;
+      background: transparent;
+      border: none;
     }
 
-    .project-card::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(196,181,253,0.05) 0%, transparent 55%);
-      opacity: 0; transition: opacity 0.3s;
-      pointer-events: none; border-radius: var(--radius);
+    .card-inner {
+      position: relative;
+      width: 100%; min-height: 280px;
+      transform-style: preserve-3d;
+      transition: transform 0.65s cubic-bezier(0.16,1,0.3,1);
     }
-    .project-card:hover::after { opacity: 1; }
-    .project-card:hover { border-color: rgba(196,181,253,0.22); }
+
+    .project-card:hover .card-inner { transform: rotateY(180deg); }
+
+    .card-front, .card-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: var(--radius);
+      padding: 1.7rem 1.8rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background: #1c1830;
+      border-color: rgba(196,181,253,0.2);
+      justify-content: space-between;
+    }
+
+    .card-front:hover, .card-back:hover { border-color: rgba(196,181,253,0.22); }
 
     .proj-num {
       display: inline-block;
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
+      font-size: 0.67rem;
+      letter-spacing: 0.14em;
       color: var(--accent);
-      opacity: 0.7;
-      margin-bottom: 0.9rem;
+      opacity: 0.65;
+      margin-bottom: 0.8rem;
       font-weight: 500;
     }
 
@@ -420,33 +437,43 @@
       font-weight: 700;
       font-size: 1.05rem;
       color: var(--text);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
       letter-spacing: -0.01em;
     }
 
-    .project-desc { color: var(--muted); font-size: 0.8rem; line-height: 1.7; margin-bottom: 1.3rem; }
+    .project-desc { color: var(--muted); font-size: 0.79rem; line-height: 1.7; flex: 1; }
 
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.3rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: auto; padding-top: 1rem; }
     .tag {
       background: rgba(196,181,253,0.07);
       border: 1px solid rgba(196,181,253,0.13);
       color: var(--accent);
       border-radius: 4px;
       padding: 0.15rem 0.5rem;
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       letter-spacing: 0.04em;
-      opacity: 0.9;
+    }
+
+    .flip-hint {
+      font-size: 0.67rem;
+      color: var(--muted);
+      opacity: 0.45;
+      margin-top: auto;
+      padding-top: 1rem;
+      letter-spacing: 0.06em;
     }
 
     .project-link {
       display: inline-flex; align-items: center; gap: 0.3rem;
-      color: var(--muted);
+      color: var(--accent);
       font-size: 0.76rem;
       text-decoration: none;
       transition: color 0.2s, gap 0.2s;
       letter-spacing: 0.02em;
+      margin-top: 1rem;
+      flex-shrink: 0;
     }
-    .project-link:hover { color: var(--accent); gap: 0.5rem; }
+    .project-link:hover { color: #d8ccff; gap: 0.5rem; }
 
     /* ── SKILLS ── */
     #skills { background: var(--surface); }
@@ -683,6 +710,7 @@
             <div class="exp-role">Networking Intern</div>
             <div class="exp-org">Ayub Medical Hospital</div>
             <div class="exp-date">Summer 2025</div>
+            <div class="exp-desc">Configured and maintained hospital network infrastructure across multiple wings. Assisted with switch setup, VLAN management, and day-to-day network troubleshooting for clinical systems.</div>
           </div>
           <div class="exp-card">
             <div class="exp-role">BS Cybersecurity &middot; 3rd Year</div>
@@ -704,74 +732,123 @@
 
       <div class="projects-grid reveal-children">
 
-        <div class="project-card" data-tilt>
-          <span class="proj-num">01 &mdash; NLP</span>
-          <div class="project-title">AI Phishing Email Detector</div>
-          <p class="project-desc">Fine tuned DistilBERT achieving 94% precision, 91% recall on 5,000 emails. Deployed as a live Streamlit web app with dual inference modes single email and batch CSV analysis.</p>
-          <div class="project-tags">
-            <span class="tag">DistilBERT</span>
-            <span class="tag">HuggingFace</span>
-            <span class="tag">NLP</span>
-            <span class="tag">Streamlit</span>
-            <span class="tag">Python</span>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="proj-num">01 &mdash; NLP</span>
+              <div class="project-title">AI Phishing Email Detector</div>
+              <div class="project-tags">
+                <span class="tag">DistilBERT</span>
+                <span class="tag">HuggingFace</span>
+                <span class="tag">NLP</span>
+                <span class="tag">Streamlit</span>
+                <span class="tag">Python</span>
+              </div>
+              <p class="flip-hint">Hover to learn more</p>
+            </div>
+            <div class="card-back">
+              <div>
+                <div class="project-title">AI Phishing Email Detector</div>
+                <p class="project-desc">Fine-tuned DistilBERT achieving 94% precision, 91% recall on 5,000 emails. Deployed as a live Streamlit web app with dual inference modes — single email and batch CSV analysis.</p>
+              </div>
+              <a href="https://github.com/IsraChaudry/phishing_detection_system" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+            </div>
           </div>
-          <a href="https://github.com/IsraChaudry/phishing_detection_system" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
         </div>
 
-        <div class="project-card" data-tilt>
-          <span class="proj-num">02 &mdash; Web3 / Security</span>
-          <div class="project-title">SecureVerse</div>
-          <p class="project-desc">Decentralised identity platform with 3 factor auth: blockchain DIDs on Ethereum Sepolia, TOTP 2FA, RS256 JWT. E2E NaCl Box encryption, tamper evident HMAC-SHA256 audit log on-chain. Threat modelling with IRIS &amp; STRIDE.</p>
-          <div class="project-tags">
-            <span class="tag">FastAPI</span>
-            <span class="tag">React</span>
-            <span class="tag">Solidity</span>
-            <span class="tag">Ethereum</span>
-            <span class="tag">NaCl</span>
-            <span class="tag">RBAC</span>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="proj-num">02 &mdash; Web3 / Security</span>
+              <div class="project-title">SecureVerse</div>
+              <div class="project-tags">
+                <span class="tag">FastAPI</span>
+                <span class="tag">React</span>
+                <span class="tag">Solidity</span>
+                <span class="tag">Ethereum</span>
+                <span class="tag">NaCl</span>
+                <span class="tag">RBAC</span>
+              </div>
+              <p class="flip-hint">Hover to learn more</p>
+            </div>
+            <div class="card-back">
+              <div>
+                <div class="project-title">SecureVerse</div>
+                <p class="project-desc">Decentralised identity platform with 3-factor auth: blockchain DIDs on Ethereum Sepolia, TOTP 2FA, RS256 JWT. E2E NaCl Box encryption, tamper-evident HMAC-SHA256 audit log on-chain. Threat modelling with IRIS &amp; STRIDE.</p>
+              </div>
+              <a href="https://github.com/IsraChaudry/SecureVerse" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+            </div>
           </div>
-          <a href="https://github.com/IsraChaudry/SecureVerse" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
         </div>
 
-        <div class="project-card" data-tilt>
-          <span class="proj-num">03 &mdash; Full Stack</span>
-          <div class="project-title">GIKI Timetable System</div>
-          <p class="project-desc">Automated timetable generator for 12 departments, 48 batches, 52 rooms. Custom 3 phase algorithm: Graph Coloring + CSP Backtracking + Soft Optimizer. 18 REST API endpoints, full React frontend.</p>
-          <div class="project-tags">
-            <span class="tag">React</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">SQLite</span>
-            <span class="tag">Graph Coloring</span>
-            <span class="tag">CSP</span>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="proj-num">03 &mdash; Full Stack</span>
+              <div class="project-title">GIKI Timetable System</div>
+              <div class="project-tags">
+                <span class="tag">React</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">Graph Coloring</span>
+                <span class="tag">CSP</span>
+              </div>
+              <p class="flip-hint">Hover to learn more</p>
+            </div>
+            <div class="card-back">
+              <div>
+                <div class="project-title">GIKI Timetable System</div>
+                <p class="project-desc">Automated timetable generator for 12 departments, 48 batches, 52 rooms. Custom 3-phase algorithm: Graph Coloring + CSP Backtracking + Soft Optimizer. 18 REST API endpoints with a full React frontend.</p>
+              </div>
+              <a href="https://github.com/IsraChaudry/GIKI-Timetable" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+            </div>
           </div>
-          <a href="https://github.com/IsraChaudry/GIKI-Timetable" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
         </div>
 
-        <div class="project-card" data-tilt>
-          <span class="proj-num">04 &mdash; AI Agents</span>
-          <div class="project-title">LangGraph Research Assistant</div>
-          <p class="project-desc">Multiagent AI system with 4 specialized agents (Clarity, Research, Validator, Synthesis), human-in-the-loop interrupts, Tavily search, multi-turn memory, and a React chat interface.</p>
-          <div class="project-tags">
-            <span class="tag">LangGraph</span>
-            <span class="tag">Groq</span>
-            <span class="tag">Tavily</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">React</span>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="proj-num">04 &mdash; AI Agents</span>
+              <div class="project-title">LangGraph Research Assistant</div>
+              <div class="project-tags">
+                <span class="tag">LangGraph</span>
+                <span class="tag">Groq</span>
+                <span class="tag">Tavily</span>
+                <span class="tag">FastAPI</span>
+                <span class="tag">React</span>
+              </div>
+              <p class="flip-hint">Hover to learn more</p>
+            </div>
+            <div class="card-back">
+              <div>
+                <div class="project-title">LangGraph Research Assistant</div>
+                <p class="project-desc">Multi-agent AI system with 4 specialized agents (Clarity, Research, Validator, Synthesis), human-in-the-loop interrupts, Tavily search, multi-turn memory, and a React chat interface.</p>
+              </div>
+              <a href="https://github.com/IsraChaudry/bussiness-reseach-assitant" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
+            </div>
           </div>
-          <a href="https://github.com/IsraChaudry/business-research-assistant" target="_blank" rel="noopener" class="project-link">View on GitHub &rarr;</a>
         </div>
 
-        <div class="project-card" data-tilt>
-          <span class="proj-num">05 &mdash; Cryptography</span>
-          <div class="project-title">Lava Lamp Key Generator</div>
-          <p class="project-desc">Hardware entropy source using live lava lamp video via OpenCV. RGB variance extraction + SHA-256 + XOR mixing in C++ generates cryptographic keys stronger than standard PRNGs.</p>
-          <div class="project-tags">
-            <span class="tag">C++</span>
-            <span class="tag">OpenCV</span>
-            <span class="tag">SHA-256</span>
-            <span class="tag">Cryptography</span>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="proj-num">05 &mdash; Cryptography</span>
+              <div class="project-title">Lava Lamp Key Generator</div>
+              <div class="project-tags">
+                <span class="tag">C++</span>
+                <span class="tag">OpenCV</span>
+                <span class="tag">SHA-256</span>
+                <span class="tag">Cryptography</span>
+              </div>
+              <p class="flip-hint">Hover to learn more</p>
+            </div>
+            <div class="card-back">
+              <div>
+                <div class="project-title">Lava Lamp Key Generator</div>
+                <p class="project-desc">Hardware entropy source using live lava lamp video captured via OpenCV. Extracts RGB pixel variance per frame, feeds it through SHA-256 + XOR mixing in C++ to produce cryptographic keys with higher entropy than standard software PRNGs — inspired by Cloudflare's wall of lava lamps.</p>
+              </div>
+            </div>
           </div>
-          <a href="https://github.com/IsraChaudry" target="_blank" rel="noopener" class="project-link">GitHub (coming soon) &rarr;</a>
         </div>
 
       </div>
@@ -922,22 +999,6 @@
     }, { threshold: 0.5 });
     statsObs.observe(document.getElementById('hero-stats'));
 
-    /* 3D tilt */
-    document.querySelectorAll('[data-tilt]').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
-        const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
-        card.style.transform = `perspective(1000px) rotateX(${-dy * 6}deg) rotateY(${dx * 6}deg) translateZ(4px)`;
-        card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        card.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1), border-color 0.25s';
-        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0)';
-        setTimeout(() => { card.style.transition = ''; }, 500);
-      });
-    });
 
     /* Nav active */
     const sections = document.querySelectorAll('section[id]');
